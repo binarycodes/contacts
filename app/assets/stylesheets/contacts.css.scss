@@ -1,0 +1,55 @@
+// Place all the styles related to the Contacts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.new_contact {
+    padding: 10px;
+}
+
+.contact_form_field {
+    padding: 0px 5px 10px 5px;
+}
+
+.contact_form_field label {
+    display: block;
+    float: left;
+    width: 150px;
+    text-align: right;
+    vertical-align: center;
+    padding-right: 15px;
+}
+
+._fields {
+    @extend .contact_form_field;
+}
+
+
+._fields label {
+   display: block;
+    float: left;
+    width: 150px;
+    text-align: right;
+    vertical-align: center;
+    padding-right: 15px;
+}
+
+.new_contact input {
+    clear: left;
+    width: auto;
+    margin: 5px 0px 0px 0px;
+}
+
+.new_contact input[type='submit'] {
+    width: auto;
+    margin-left: 165px;
+    padding: 5px;
+    font-size: 12px;
+}
+
+.new_contact input[type='radio'] {
+    width: auto;
+}
+
+.field_with_errors {
+    display: inline;
+}

@@ -1,0 +1,9 @@
+<h1>CONTACTS LIST</h1>
+
+<%= link_to 'New Contact', new_contact_path %>
+
+<div id="contact_list">
+  <% for contact in @contacts %>
+  <%= render :partial => "show_contact", :locals =>  { :target => contact }%>
+  <% end %>
+</div>

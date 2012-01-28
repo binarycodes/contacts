@@ -1,0 +1,12 @@
+<div class="contact_data">
+  <p class="contact_name">
+    <%= link_to "#{target.first_name} #{target.last_name}", target %>
+  </p>
+  <ul>
+    <% for phone in target.phones %>
+    <li><%= phone.phone_no %> - <%= phone.phone_type %></li>
+    <% end %>
+    <%= link_to 'Edit', edit_contact_path(target)  %> |
+    <%= link_to 'Delete', target, :method => 'delete', :confirm => "Are you sure?", :class => "delete_contact" %>
+  </ul>
+</div>
