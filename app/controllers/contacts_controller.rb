@@ -7,7 +7,7 @@ class ContactsController < ApplicationController
 
   def new
     @contact = Contact.new
-    2.times { @contact.phones.build }
+    1.times { @contact.phones.build }
   end
 
   def show

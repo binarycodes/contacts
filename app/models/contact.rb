@@ -16,8 +16,8 @@ class Contact < ActiveRecord::Base
 
   def self.search(search)
     if search
-      Contact.where("lower(first_name) LIKE :search OR lower(last_name) LIKE :search",
-                    {:search => "%#{search.downcase}%"}).order("first_name ASC")
+      Contact.where("lower(first_name||last_name) LIKE :search ",
+                    {:search => "%#{search.downcase}%"}).includes(:phones).order("first_name ASC")
     else
       Contact.includes(:phones).order("first_name ASC")
     end
