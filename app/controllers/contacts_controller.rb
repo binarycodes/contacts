@@ -15,14 +15,16 @@ class ContactsController < ApplicationController
   end
 
   def edit
-    @contact = Contact.find params[:id]
+    @contact = Contact.find(params[:id])
+    session[:last_page] = request.env['HTTP_REFERER'] || contacts_path
   end
 
   def update
     contact = Contact.find params[:id]
     contact.attributes = params[:contact]
     if contact.save
-      redirect_to contacts_path, :notice => "Your contact has been successfully updated"
+      session[:last_page] = request.env['HTTP_REFERER'] || contacts_path
+      redirect_to contact_path, :notice => "Your contact has been successfully updated"
     else
       redirect_to :back, :alert => "There was an error updating your contact"
     end
@@ -31,7 +33,8 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new params[:contact]
     if @contact.save
-      redirect_to contacts_path, :notice => "New Contact successfully added"
+      session[:last_page] = request.env['HTTP_REFERER'] || contacts_path
+      redirect_to contact_path, :notice => "New Contact successfully added"
     else
       render :action => :new
     end

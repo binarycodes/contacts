@@ -1,0 +1,99 @@
+
+.new_contact {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.contact_form_field {
+    padding: 0px 5px 10px 5px;
+}
+
+.contact_form_field label {
+    display: block;
+    float: left;
+    width: 150px;
+    text-align: right;
+    padding-right: 15px;
+}
+
+._fields {
+    padding: 0px 5px 10px 5px;
+}
+
+
+._fields label {
+    display: block;
+    float: left;
+    width: 150px;
+    text-align: right;
+    padding-right: 15px;
+}
+
+.new_contact input {
+    clear: left;
+    width: auto;
+    margin: 5px 0px 0px 0px;
+}
+
+.new_contact input[type='submit'] {
+    width: auto;
+    margin-left: 165px;
+    padding: 5px;
+    font-size: 12px;
+}
+
+.new_contact input[type='radio'] {
+    width: auto;
+}
+
+.field_with_errors {
+    display: inline;
+}
+
+
+
+#contact_list {
+    padding: 0;
+    margin: 0;
+}
+
+.contact_data {
+    background: aliceblue;
+}
+
+.contact_data p {
+    padding: 0;
+    margin: 0;
+}
+
+
+#contact_list_details {
+    text-align: left;
+    vertical-align: central;
+}
+
+.contact_data_details {
+    height: 60px;
+    border-color: #000000;
+    background: aliceblue;
+    margin: 20px 0px 20px 0px;
+    padding: 10px;
+}
+
+.contact_name_details {
+    float: left;
+    width: 250px;
+    height: 50px;
+}
+
+.contact_phones_details {
+    display: block;
+    float: left;
+    clear: right;
+    width: 200px;
+    height: 40px;
+}
+
+.contact_admin_details {
+    height: 40px;
+}

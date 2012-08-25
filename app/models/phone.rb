@@ -1,5 +1,5 @@
 class Phone < ActiveRecord::Base
-  PHONE_TYPES =["Mobile","Fixed Line"]
+  PHONE_TYPES =["MOBILE","FIXEDLINE"]
 
   belongs_to :contact, :validate => true
 

@@ -1,6 +1,6 @@
 class Contact < ActiveRecord::Base
   has_many :phones, :dependent => :destroy
-  validates_presence_of :phones
+  validates :phones, :presence => true
 
   accepts_nested_attributes_for :phones, :allow_destroy => true
 
@@ -16,8 +16,12 @@ class Contact < ActiveRecord::Base
 
   def self.search(search)
     if search
-      Contact.where("lower(first_name||last_name) LIKE :search ",
-                    {:search => "%#{search.downcase}%"}).includes(:phones).order("first_name ASC")
+      # Contact.where("lower(first_name||last_name) LIKE :search ",
+      #                    {:search => "%#{search.downcase}%"}).includes(:phones).order("first_name ASC")
+      Contact.joins(:phones).find(:all,
+                                  :conditions => ['lower(contacts.first_name||contacts.last_name)||phones.phone_no LIKE ?',
+                                                  "%#{search.downcase}%"],
+                                  :include => :phones);
     else
       Contact.includes(:phones).order("first_name ASC")
     end
