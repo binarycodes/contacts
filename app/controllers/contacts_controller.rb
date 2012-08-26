@@ -1,8 +1,9 @@
 class ContactsController < ApplicationController
   respond_to :html, :js
+  helper_method :sort_column, :sort_direction
 
   def index
-    @contacts = Contact.search(params[:search])
+    @contacts = Contact.search(params[:search], sort_column, sort_direction)
   end
 
   def new
@@ -12,6 +13,7 @@ class ContactsController < ApplicationController
 
   def show
     @contact = Contact.find(params[:id])
+    session[:last_page] = request.env['HTTP_REFERER'] || contacts_path
   end
 
   def edit
@@ -34,7 +36,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new params[:contact]
     if @contact.save
       session[:last_page] = request.env['HTTP_REFERER'] || contacts_path
-      redirect_to contact_path, :notice => "New Contact successfully added"
+      redirect_to contact_path(@contact), :notice => "New Contact successfully added"
     else
       render :action => :new
     end
@@ -43,5 +45,16 @@ class ContactsController < ApplicationController
   def destroy
     Contact.destroy params[:id]
     redirect_to contacts_path, :notice => "Contact has been deleted"
+  end
+
+
+  private
+
+  def sort_column
+    Contact.column_names.include?(params[:sort]) ? params[:sort] : "first_name"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end

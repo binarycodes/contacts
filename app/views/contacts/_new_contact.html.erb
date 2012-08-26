@@ -8,10 +8,16 @@
     <%= f.label :last_name %>
     <%= f.text_field :last_name %>
   </div>
+  <div class="contact_form_field">
+    <%= f.label :remarks %>
+    <%= f.text_area :remarks , :rows => 3, :cols=> 29 %>
+  </div>
   <%= f.fields_for :phones do |builder| %>
     <%= render :partial => "phone_fields", :locals => { :f => builder} %>
   <% end  %>
   <%= link_to_add_fields "Add Contact Nos", f, :phones %>
+  <p class="section_gap"> </p>
+
   <div class="contact_form_field">
     <%= f.submit %>
   </div>

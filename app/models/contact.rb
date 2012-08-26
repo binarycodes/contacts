@@ -1,29 +1,32 @@
 class Contact < ActiveRecord::Base
   has_many :phones, :dependent => :destroy
   validates :phones, :presence => true
-
+  attr_accessible :first_name, :last_name,  :remarks, :phones_attributes
   accepts_nested_attributes_for :phones, :allow_destroy => true
 
   validates :first_name, :presence => true
   #validates :last_name, :presence => true
 
-  validates :first_name, :format => { :with => /\A[a-zA-Z]+\Z/, :message => "can have only alphabets" }
-  #validates :last_name, :format => { :with => /\A[a-zA-Z]+\Z/, :message => "can have only alphabets" }
+  validates :first_name, :format => { :with => /\A[a-zA-Z ]+\Z/, :message => "can have only alphabets and space" }
+
 
   validates :first_name, :length => { :minimum => 2, :maximum => 30 }
-  #validates :last_name, :length => { :minimum => 2, :maximum => 30 }
 
 
-  def self.search(search)
-    if search
-      # Contact.where("lower(first_name||last_name) LIKE :search ",
-      #                    {:search => "%#{search.downcase}%"}).includes(:phones).order("first_name ASC")
-      Contact.joins(:phones).find(:all,
-                                  :conditions => ['lower(contacts.first_name||contacts.last_name)||phones.phone_no LIKE ?',
-                                                  "%#{search.downcase}%"],
-                                  :include => :phones);
+  def full_name
+    name = first_name
+    name += " #{last_name}" unless last_name.nil?
+    name
+  end
+
+  def self.search(search, sort, direction)
+    if search and search != ""
+      Contact.joins(:phones).
+        find(:all,
+             :conditions => ['lower(contacts.first_name||contacts.last_name)||phones.phone_no LIKE ?', "%#{search.downcase}%"],
+             :include => :phones);
     else
-      Contact.includes(:phones).order("first_name ASC")
+      Contact.includes(:phones).order("#{sort} #{direction}")
     end
   end
 

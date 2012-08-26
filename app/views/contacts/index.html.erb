@@ -1,9 +1,11 @@
-<h2>CONTACTS LIST</h2>
-
 <p class="new_contact">
   <%= link_to 'New Contact', new_contact_path %>
 </p>
 
-<%= render :partial => "show_contacts", :locals =>  { :target => @contacts }%>
-
-
+<h2>CONTACTS LIST</h2>
+<p class="section_gap"></p>
+<% if @contacts.size > 0 %>
+  <%= render :partial => "show_contacts", :locals =>  { :target => @contacts }%>
+<% else %>
+  <p>No data found</p>
+<% end %>

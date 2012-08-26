@@ -4,9 +4,13 @@
   </div>
   <div class="contact_phones_details">
     <% for phone in target.phones %>
-      <img src="<%= asset_path(phone.phone_type.downcase+".png") %>" /> <%= phone.phone_no %>
-      <br/>
+      <p>
+        <img src="<%= asset_path(phone.phone_type.downcase+".png") %>" /> <%= phone.phone_no %>
+      </p>
     <% end %>
+  </div>
+  <div class="contact_remarks_details">
+    <%= target.remarks %>
   </div>
   <div class="contact_admin_details">
     <%= link_to 'Edit', edit_contact_path(target)  %> |

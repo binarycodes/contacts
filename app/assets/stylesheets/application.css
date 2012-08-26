@@ -19,8 +19,8 @@ body {
 
 #header {
     /*background-image: url("header.png");*/
-    background: #0983B1;
-    border-radius: 20px 20px 0px 0px;
+    background-color: steelblue;
+    border-radius: 0px 0px 0px 0px;
     padding: 0px;
     height: 140px;;
 }
@@ -47,12 +47,15 @@ body {
 #banner h1 {
     padding-top: 10px;
     margin: 0px;
+    font-weight: bold;
+    font-size: 2.5em;
 }
 
 #banner h5 {
     margin: 0px;
-    width: 130px;
-    text-align: right;
+    text-align: left;
+    padding-left: 5px;
+    font-size: 80%;
 }
 
 #basic_search {
@@ -69,7 +72,8 @@ body {
     height: 40px;
     margin: 0px;
     color: #ffffff;
-    font-size: 12px;
+    font-size: 10px;
+    font-weight: bold;
 }
 
 #footer{
