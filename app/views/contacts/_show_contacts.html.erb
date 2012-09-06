@@ -1,3 +1,6 @@
+<div class="kaminari_paginate">
+  <%= paginate @contacts %>
+</div>
 <table id="contact_list">
   <thead>
     <tr>
@@ -22,10 +25,7 @@
         <% end %>
       </td>
       <td class="contact_admin">
-        <p>
-          <%= link_to image_tag("edit.jpg", :border=>0), edit_contact_path(contact)  %>
-          <%= link_to image_tag("delete.jpg", :border=>0), contact, :method => 'delete', :confirm => "Are you sure?", :class => "delete_contact" %>
-        </p>
+        <%= render :partial => "admin_options", :locals => {:target => contact} %>
       </td>
     </tr>
     <% end %>
