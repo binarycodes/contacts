@@ -8,6 +8,7 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require_reset
  *= require_self
  *= require_tree .
  */
@@ -15,66 +16,123 @@
 
 body {
     background: #ECECEC;
+    text-align: center;
+}
+
+#wrapper {
+    margin: 0 auto;
+    text-align: left;
+    width: 90%;
+    box-shadow: 0px 0px 20px 2px #555555;
 }
 
 #header {
-    /*background-image: url("header.png");*/
-    background-color: steelblue;
-    border-radius: 0px 0px 0px 0px;
-    padding: 0px;
-    height: 140px;;
 }
 
-#header a {
+#top_header {
+    background-color: steelblue;
+    padding: 0px;
+    height: 100px;
+}
+
+#top_header a {
     color: #EFEFEF;
     text-decoration: none;
+}
+
+#banner {
+    float: left;
+    width: 60%;
+    height: 100px;
+    padding: 0;
+    margin: 0;
+    color: #EFEFEF;
+}
+
+#banner h1 {
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0px;
+    font-weight: bold;
+    font-size: 2.5em;
+    height: 60px;
+    line-height: 60px;
+    vertical-align: bottom;
+}
+
+#banner h5 {
+    margin: 0px;
+    display: block;
+    text-align: left;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 80%;
+    font-style: italic;
+}
+
+
+#side_banner {
+    float: left;
+    clear: right;
+    width: 40%;
+    height: 100px;
+}
+
+#login_space {
+    height: 40px;
+    margin: 0px;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: right;
+}
+
+#login_space p {
+    padding: 10px;
+}
+
+#basic_search {
+    margin: 0px;
+    height: 60px;
+}
+
+.search_bar {
+    text-align: right;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    padding-right:10px;
+}
+
+.search_bar input[type=text] {
+    width: 250px;
+}
+
+.pretty_links a {
+    text-decoration: none;
+    display: block;
+    outline: 0;
+}
+
+.pretty_links a:link a:visited {
+    text-shadow: 2px 2px 2px #555555;
+}
+
+.pretty_links a:active {
+    text-shadow: -2px -2px 2px #555555;
 }
 
 #content {
     background: #FFFFFF;
     padding: 10px;
     min-height: 600px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
-#banner {
-    float: left;
-    clear: left;
-    width: 400px;
-    padding: 20px;
-    color: #EFEFEF;
-}
-
-#banner h1 {
-    padding-top: 10px;
-    margin: 0px;
-    font-weight: bold;
-    font-size: 2.5em;
-}
-
-#banner h5 {
-    margin: 0px;
-    text-align: left;
-    padding-left: 5px;
-    font-size: 80%;
-}
-
-#basic_search {
-    padding: 10px 20px 10px 10px;
-    margin: 0px;
-    float: right;
-    clear: right;
-}
-
-#login_space {
-    float:right;
-    clear: right;
-    padding: 10px 20px 10px 10px;
-    height: 40px;
-    margin: 0px;
-    color: #ffffff;
-    font-size: 10px;
-    font-weight: bold;
-}
 
 #footer{
     background: #ffffff;
@@ -83,3 +141,49 @@ body {
     text-align: left;
     font-size: x-small;
 }
+
+
+#new_contact {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+/* start menu styles*/
+
+#main_nav_menu {
+    height: 50px;
+    margin: 0;
+    background: #666666;
+}
+
+.menu_item {
+    width: 120px;
+    float: left;
+}
+
+.menu_item a {
+    display: block;
+    outline: 0;
+    text-decoration: none;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    background: #666666;
+    color: #cccccc;
+    font-weight: bold;
+}
+
+
+.menu_item a:visited a:link {
+    text-shadow: 1px 1px 1px #222222;
+}
+
+.menu_item a:hover {
+    text-shadow: -1px -1px 1px #222222;
+    color: white;
+    background: #444444;
+    height: 55px;
+}
+
+/* end menu styles*/

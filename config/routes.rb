@@ -1,5 +1,5 @@
 Contacts::Application.routes.draw do
-  resources :contacts
+  resources :contacts, :search
   root :to => 'Contacts#index'
 
   # The priority is based upon order of creation:

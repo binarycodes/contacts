@@ -19,14 +19,12 @@ class Contact < ActiveRecord::Base
     name
   end
 
-  def self.search(search, sort, direction)
-    if search and search != ""
+  def self.search(search_param)
+    if search_param and not search_param.empty?
       Contact.joins(:phones).
         find(:all,
-             :conditions => ['lower(contacts.first_name||contacts.last_name)||phones.phone_no LIKE ?', "%#{search.downcase}%"],
+             :conditions => ['lower(contacts.first_name||contacts.last_name)||phones.phone_no LIKE ?', "%#{search_param.downcase}%"],
              :include => :phones);
-    else
-      Contact.includes(:phones).order("#{sort} #{direction}")
     end
   end
 

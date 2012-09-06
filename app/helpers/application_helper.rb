@@ -11,4 +11,9 @@ module ApplicationHelper
     end
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
   end
+
+  def link_to_menu(name, f)
+    content_tag("div", link_to(name, f), :class => "menu_item")
+  end
+
 end

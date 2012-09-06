@@ -1,9 +1,11 @@
 class ContactsController < ApplicationController
-  respond_to :html, :js
+  respond_to :html, :js, :json
   helper_method :sort_column, :sort_direction
 
   def index
-    @contacts = Contact.search(params[:search], sort_column, sort_direction)
+    @contacts = Contact.includes(:phones)
+      .order("#{sort_column} #{sort_direction}")
+      .page(params[:page]).per(10)
   end
 
   def new
