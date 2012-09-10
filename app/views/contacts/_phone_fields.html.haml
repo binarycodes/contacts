@@ -1,0 +1,5 @@
+%div._fields
+  = f.label :phone_no, "Contact No."
+  = f.text_field :phone_no
+  = f.select(:phone_type, Phone::PHONE_TYPES)
+  = link_to_remove_fields "remove", f

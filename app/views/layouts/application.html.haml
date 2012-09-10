@@ -1,0 +1,40 @@
+!!!
+%html
+  %head
+    %title Contacts
+    = stylesheet_link_tag    "reset", :media => "all"
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+
+  %body
+    %div#wrapper.wrapper
+
+      %div#header
+
+        %div#top_header
+
+          %div#banner.pretty_links
+            %h1= link_to "CONTACTS", root_path
+            %h5 the lost records shall be found again ...
+
+          %div#side_banner
+            %div#login_space.pretty_links
+              %p ADMIN LOGIN
+
+            %div#basic_search
+              = render :partial => "search/basic_search"
+
+        %div#main_nav_menu
+          = link_to_menu 'New Contact', new_contact_path
+          = link_to_menu 'Contact List', contacts_path
+
+      %div#content
+        %div#flash_messages
+          - flash.each do |key, message|
+            = content_tag :div, message, :id => "flash_#{key}"
+        = yield
+
+      %div#footer
+        %hr
+        sensitive information. deal with care.

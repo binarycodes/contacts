@@ -1,0 +1,8 @@
+%h2 CONTACTS SHOW
+
+%div#contact_list_details
+  = render :partial => "show_contact_details", :locals =>  { :target => @contact }
+
+= link_to "Back", session[:last_page]
+|
+= link_to "Contact List", :action => "index"
