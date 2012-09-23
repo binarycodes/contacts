@@ -1,6 +1,8 @@
 class LoginController < ApplicationController
+  include LoginHelper
+
   def create
-    if params[:password]=="foo"
+    if md5sum(params[:password])=="3858f62230ac3c915f300c664312c63f"
       session[:admin] = true
       flash[:notice] = "Successfully logged in"
     else
