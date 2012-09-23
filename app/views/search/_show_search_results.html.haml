@@ -1,9 +1,13 @@
 %table#contact_list
   %thead
     %tr
-      %th NAME
+      %th
+        = sortable "first_name", "NAME"
       %th CONTACT NO
-      %th ADMIN
+      %th
+        = sortable "remarks", "REMARKS"
+      - if admin?
+        %th ADMIN
   %tbody
     - for contact in target
       %tr.contact_data
@@ -13,9 +17,11 @@
         %td.contact_phones
           - for phone in contact.phones
             %p
-              = image_tag("#{phone.phone_type.downcase}.png")
+              = image_tag("#{phone.phone_type.downcase}.png", title: "#{phone.phone_type.titlecase}")
               = phone.phone_no
-        %td.contact_admin
+        %td.contact_remarks
           %p
-            = link_to image_tag("edit.jpg", :border=>0), edit_contact_path(contact)
-            = link_to image_tag("delete.jpg", :border=>0), contact, :method => 'delete', :confirm => "Are you sure?", :class => "delete_contact"
+            = contact.remarks
+        - if admin?
+          %td.contact_admin
+            = render partial: "admin_options", locals: {target: contact}

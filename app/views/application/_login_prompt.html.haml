@@ -1,0 +1,4 @@
+%div.login_prompt
+  = form_for login_index_path, :url => {:controller => "login" }  do
+    = password_field_tag :password
+    = submit_tag "Login"

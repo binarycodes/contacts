@@ -1,6 +1,9 @@
 Contacts::Application.routes.draw do
-  resources :contacts, :search
+  resources :contacts, :search, :login
   root :to => 'Contacts#index'
+
+  match 'login' => 'Login#new'
+  match 'logout' => 'Login#destroy'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

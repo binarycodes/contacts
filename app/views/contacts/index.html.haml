@@ -1,4 +1,4 @@
 %h2 CONTACTS LIST
 %p.section_gap
 - if @contacts.size > 0
-  = render :partial => "show_contacts", :locals =>  { :target => @contacts }
+  = render partial: "show_contacts", locals: { target: @contacts }

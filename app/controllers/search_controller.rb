@@ -6,8 +6,7 @@ class SearchController < ApplicationController
     if (params[:search].nil? or params[:search].empty?)
       redirect_to contacts_path
     else
-      puts "here"
-      @contacts = Contact.search(params[:search])
+      @contacts = Contact.search(params[:search], sort_column, sort_direction)
     end
   end
 

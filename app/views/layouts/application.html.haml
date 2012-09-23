@@ -20,7 +20,13 @@
 
           %div#side_banner
             %div#login_space.pretty_links
-              %p ADMIN LOGIN
+              %p
+                - if admin?
+                  = link_to 'LOGOUT', logout_path
+                - else
+                  = link_to 'ADMIN LOGIN', login_index_path, id: "login_link"
+            %div#login_prompt_hidden
+              = render partial: "login_prompt"
 
             %div#basic_search
               = render :partial => "search/basic_search"

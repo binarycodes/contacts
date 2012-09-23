@@ -150,7 +150,7 @@ p {
   <tr>
     <td>/home/sujoy/projects/contacts</td>
     <td>3.2.8</td>
-    <td>2012-09-06 22:59:43 +0530</td>
+    <td>2012-09-06 23:10:33 +0530</td>
     <td>BasicAuth, CrossSiteScripting, DefaultRoutes, DigestDoS, EscapeFunction, Evaluation, Execute, FileAccess, FilterSkipping, ForgerySetting, LinkTo, LinkToHref, MailTo, MassAssignment, ModelAttributes, NestedAttributes, QuoteTableName, Redirect, Render, ResponseSplitting, SQL, SafeBufferManipulation, SelectTag, SelectVulnerability, Send, SendFile, SessionSettings, SingleQuotes, SkipBeforeFilter, StripTags, TranslateBug, ValidationRegex, WithoutProtection</td>
   </tr>
 </table>
@@ -163,7 +163,7 @@ p {
   </tr>
   <tr>
     <td>Controllers</td>
-    <td>2</td>
+    <td>3</td>
   </tr>
   <tr>
     <td>Models</td>
@@ -175,11 +175,11 @@ p {
   </tr>
   <tr>
     <td>Errors</td>
-    <td>1</td>
+    <td>0</td>
   </tr>
   <tr>
     <td>Security Warnings</td>
-    <td>0 <span class='high-confidence'>(0)</span></td>
+    <td>1 <span class='high-confidence'>(1)</span></td>
   </tr>
 </table>
 <br>
@@ -189,30 +189,103 @@ p {
     <th>Total</th>
   </tr>
   
+  <tr>
+    <td>SQL Injection</td>
+    <td>1</td>
+  </tr>
+  
 </table>
 <br>
-<div onClick="toggle('errors_table');">  <h2>Exceptions raised during the analysis (click to see them)</h2 ></div> <div id='errors_table' style='display:none'> 
-<table>
-  <tr>
-    <th>Error</th>
-    <th>Location</th>
-  </tr>
-
-  <tr>
-    <td> parse error on value &quot;.&quot; (tDOT)</td>
-    <td>could not parse /home/sujoy/projects/contacts/app/controllers/contacts_controller.rb. There is probably a typo in the file. Test it with 'ruby_parse /home/sujoy/projects/contacts/app/controllers/contacts_controller.rb'</td>
-  </tr>
-
-</table>
-</div>
 <h2>Security Warnings</h2>  
 <table>
 
   <tr>
-    <th>General Warnings</th>
+    <th>Confidence</th>
+    <th>Class</th>
+    <th>Method</th>
+    <th>Warning Type</th>
+    <th>Message</th>
   </tr>
+  
   <tr>
-    <td>[NONE]</td>
+    <td><span class='high-confidence'>High</span></td>
+    <td>ContactsController</td>
+    <td>index</td>
+    <td><a href="http://brakemanscanner.org/docs/warning_types/sql_injection/">SQL Injection</a></td>
+    <td><div class='warning_message' onClick="toggle('context1');toggle('message1');toggle('full_message1')" ><span id='message1' style='display:block' >Possible SQL injection near line 8: Contact.includes(:phones).order(&quot;#{if Contact.column_names.includ...</span><span id='full_message1' style='display:none'>Possible SQL injection near line 8: Contact.includes(:phones).order(&quot;#{if Contact.column_names.include?(<span class="user_input">params[:sort]</span>) then   <span class="user_input">params[:sort]</span> else   &quot;first_name&quot; end} #{if [&quot;asc&quot;, &quot;desc&quot;].include?(params[:direction]) then   params[:direction] else   &quot;asc&quot; end}&quot;)</span><table id='context1' class='context' style='display:none'><caption>/app/controllers/contacts_controller.rb</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>3</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>  helper_method :sort_column, :sort_direction</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>5</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  def index</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>6</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    sort_column = (Contact.column_names.include? params[:sort]) ? params[:sort] : &quot;first_name&quot;</pre>
+            </td>
+          </tr>
+          <tr class='context alt near_error'>
+            <td class='context_line'>
+              <pre class='context'>7</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    sort_direction = (%w[asc desc].include? params[:direction]) ? params[:direction] : &quot;asc&quot;</pre>
+            </td>
+          </tr>
+          <tr class='context error'>
+            <td class='context_line'>
+              <pre class='context'>8</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    @contacts = Contact.includes(:phones).order(&quot;#{sort_column} #{sort_direction}&quot;).page(params[:page]).per(10)</pre>
+            </td>
+          </tr>
+          <tr class='context alt near_error'>
+            <td class='context_line'>
+              <pre class='context'>9</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  end</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>11</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  def new</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>12</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    @contact = Contact.new</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>13</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    1.times { @contact.phones.build }</pre>
+            </td>
+          </tr>
+</table></div></td>
   </tr>
+  
 
 </table></body></html>

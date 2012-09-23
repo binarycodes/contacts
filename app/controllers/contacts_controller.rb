@@ -2,8 +2,14 @@ class ContactsController < ApplicationController
   respond_to :html, :js, :json
   helper_method :sort_column, :sort_direction
 
+  before_filter :authorize, :except => [:index, :show]
+
+  # constants here
+  PER_PAGE=10
+
+  # normal methods
   def index
-    @contacts = Contact.includes(:phones).order("#{sort_column} #{sort_direction}").page(params[:page]).per(10)
+    @contacts = Contact.includes(:phones).order("#{sort_column} #{sort_direction}").page(params[:page]).per(PER_PAGE)
   end
 
   def new
@@ -47,13 +53,4 @@ class ContactsController < ApplicationController
     redirect_to contacts_path, :notice => "Contact has been deleted"
   end
 
-  private
-
-  def sort_column
-    (Contact.column_names.include? params[:sort]) ? params[:sort] : "first_name"
-  end
-
-  def sort_direction
-    (%w[asc desc].include? params[:direction]) ? params[:direction] : "asc"
-  end
 end

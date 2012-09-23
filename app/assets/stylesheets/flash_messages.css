@@ -1,17 +1,14 @@
 #flash_notice {
-    /*border-radius: 60px 30px;*/
     padding: 4px;
     margin: 0px;
-    background: aliceblue;
-    border: aliceblue groove 2px;
+    background: #B9E3A9 ;
+    border: #B9E3A9 solid 2px;
 }
 
 #flash_alert {
-    /*border-radius: 60px 30px;*/
     padding: 4px;
     margin: 0px;
     background: red;
-    /*border: 1px solid darken(red, 20%);*/
 }
 
 #flash_messages {
@@ -19,7 +16,6 @@
     color: #000000;
     padding: 0px;
     text-align: center;
-    font-weight: bold;
     min-height: 29px;
 }
 
